@@ -26,6 +26,26 @@ from rest_framework.views import APIView
 from e_commerce.api.serializers import *
 from e_commerce.models import Comic
 
+from rest_framework.generics import ListAPIView, RetrieveAPIView,ListCreateAPIView
+from django.contrib.auth.models import User
+
+
+from e_commerce.models import WishList
+
+
+class WishListAPIView(ListCreateAPIView):
+    queryset = WishList.objects.all()
+    serializer_class = WishListSerializer
+
+class UserRetrieveAPIView(RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = 'username'
+
+class UserListAPIView(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
 
 @api_view(http_method_names=['GET'])
 def comic_list_api_view(request):

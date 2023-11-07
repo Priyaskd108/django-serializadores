@@ -4,6 +4,10 @@ from e_commerce.models import Comic
 
 # Luego importamos todos los serializadores de django rest framework.
 from rest_framework import serializers
+from django.contrib.auth.models import User
+
+from e_commerce.models import WishList
+
 
 
 class ComicSerializer(serializers.ModelSerializer):
@@ -20,3 +24,13 @@ class ComicSerializer(serializers.ModelSerializer):
 
 
 # TODO: Realizar el serializador para el modelo de User y WishList
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']
+
+class WishListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WishList
+        fields = '__all__'
